@@ -1,22 +1,34 @@
 package org.springframework.samples.petclinic.product;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class ProductService {
+
+    private final ProductRepository productRepository;
+
     public List<Product> getAllProducts(){
-        return null;
+        return productRepository.findAll();
     }
 
     public List<Product> getProductsCheaperThan(double price) {
-        return null;
+        return productRepository.findByPriceLessThan(price);
     }
 
     public ProductType getProductType(String typeName) {
-        return null;
+        return productRepository.findProductTypeByName(typeName);
     }
 
     public Product save(Product p){
-        return null;       
+        return productRepository.save(p);
+    }
+
+    public List<ProductType> findAllProductTypes(){
+        return productRepository.findAllProductTypes();
     }
 
     
